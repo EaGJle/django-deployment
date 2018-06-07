@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Домашняя страница</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class='navbar navbar-expand-sm navbar-light bg-light'>
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <li><a type="button" href="{% url 'index' %}" class="btn btn-link" id="">Домашняя страница</a></li>
+        <li><a type="button" href="{% url 'admin:index' %}" class="btn btn-link" id=""> Админ</a></li>
+        <li><a href="{% url 'basic:register' %}" class="btn btn-link" id=""> Регистрация</a></li>
+
+        {% if user.is_authenticated %}
+          <li><a type="button" href="{% url 'logout' %}" class="btn btn-link">Выход</a></li>
+        {% else %}
+          <li><a type="button" href="{% url 'basic:user_login' %}" class="btn btn-link">Вход</a></li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    {% block body_block %}
+    {% endblock %}
+  </div>
+
+</body>
+</html>
